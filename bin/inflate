@@ -1,0 +1,17 @@
+#!/bin/sh
+# inflate oldfile newfile multiple
+
+oldfile=${1}
+if [ -z $oldfile ] || [ ! -e $oldfile ]; then
+	echo "oldfile \"$oldfile\" not found"; exit 1
+fi
+newfile=${2:-newfile}
+multiple=${3:-32}
+
+
+for i in $(seq $multiple); 
+	do echo >&2 ii:$i $(ls -l $newfile); 
+	cat $oldfile; 
+done >$newfile
+
+
